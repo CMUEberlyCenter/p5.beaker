@@ -1,0 +1,11 @@
+{
+    "scripts": {
+        "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json"
+    },
+    "devDependencies": {
+        "jsdoc": "^3.5.5"
+    },
+    "dependencies": {
+        "npm": "^6.5.0"
+    }
+}
