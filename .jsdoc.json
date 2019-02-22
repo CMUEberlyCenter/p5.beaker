@@ -1,0 +1,28 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc"]
+    },
+    "source": {
+        "include": [
+            "package.json",
+            "README.md",
+            "sketch.js",
+            "beaker.js",
+            "particle.js"
+        ],
+        "exclude": [
+             "node_modules",
+             "docs"
+        ]
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "opts": {
+        "destination": "docs",
+        "tutorials": "tutorials",
+        "verbose": true,
+        "recurse": false
+    }
+}
