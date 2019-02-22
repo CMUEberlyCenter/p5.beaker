@@ -282,7 +282,7 @@ Proton.prototype.collider_radius = 6;
  * Relative path of the image for a proton.
  * @override
  * @type {string}
- * @default "assets/ConjugateBase_Gray.png"
+ * @default "assets/proton.png"
  */
 Proton.prototype.image_path = 'assets/proton.png';
 
