@@ -18,8 +18,8 @@ var sketch = function(p) {
                             0,40,
                             38,75);
 
-        beaker.addParticles("ConjugateBase",numConjugateBases);
-        beaker.addParticles("Proton",numProtons);
+        beaker.addParticles(ConjugateBase,numConjugateBases);
+        beaker.addParticles(Proton,numProtons);
     };
     
     p.draw = function() {
