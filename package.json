@@ -1,9 +1,14 @@
 {
     "scripts": {
-        "doc": "jsdoc --configure .jsdoc.json"
+        "doc": "jsdoc --configure .jsdoc.json",
+        "build": "webpack",
+        "start": "echo 'Starting Webpack dev server! \n' && webpack-dev-server"
     },
     "devDependencies": {
-        "jsdoc": "^3.5.5"
+        "jsdoc": "^3.5.5",
+        "webpack": "^4.29.5",
+        "webpack-cli": "^3.2.3",
+        "webpack-dev-server": "^3.2.1"
     },
     "dependencies": {
         "npm": "^6.5.0"

@@ -1,3 +1,8 @@
+import * as p5 from './p5.min.js';
+import './lib/p5.play.js';
+import Proton from './lib/particles/proton.js';
+import ConjugateBase from './lib/particles/conjugate_base.js';
+import Beaker from './lib/beaker.js';
 
 var sketch = function(p) {
     var numConjugateBases = 10;
