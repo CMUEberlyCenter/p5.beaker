@@ -8,8 +8,10 @@
             "package.json",
             "README.md",
             "sketch.js",
-            "beaker.js",
-            "particle.js"
+            "lib/beaker.js",
+            "lib/particle.js",
+            "lib/particles/conjugate_base.js",
+            "lib/particles/proton.js"
         ],
         "exclude": [
              "node_modules",
