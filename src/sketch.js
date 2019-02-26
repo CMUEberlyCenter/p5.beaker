@@ -1,8 +1,8 @@
 import * as p5 from '@cmu-eberly-center/p5';
 import '@cmu-eberly-center/p5.play';
-import Proton from './lib/particles/proton.js';
-import ConjugateBase from './lib/particles/conjugate_base.js';
-import Beaker from './lib/beaker.js';
+import Proton from '../components/particles/proton/proton.js';
+import ConjugateBase from '../components/particles/conjugate_base/conjugate_base.js';
+import Beaker from '../components/beaker/beaker.js';
 
 var sketch = function(p) {
     var numConjugateBases = 10;

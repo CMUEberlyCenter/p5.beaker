@@ -6,6 +6,8 @@
  */
 
 import * as p5 from '@cmu-eberly-center/p5';
+import BackgroundImg from './beaker.png';
+import ForegroundImg from './beaker_markings.png';
 
 /**
  * A beaker/particle container.
@@ -83,16 +85,16 @@ export default function Beaker(sketch,
 /**
  * Relative path of the image for the beaker background.
  * @type {string}
- * @default "assets/beaker.png"
+ * @default "./beaker.png"
  */
-Beaker.prototype.bg_image_path = 'assets/beaker.png';
+Beaker.prototype.bg_image_path = BackgroundImg;
 
 /**
  * Relative path of the image for the beaker foreground.
  * @type {string}
- * @default "assets/beakerMarkings.png"
+ * @default "./beaker_markings.png"
  */
-Beaker.prototype.fg_image_path = 'assets/beakerMarkings.png';
+Beaker.prototype.fg_image_path = ForegroundImg;
 
 /**
  * Reference to one particle type within a beaker.

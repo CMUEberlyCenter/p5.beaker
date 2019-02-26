@@ -6,6 +6,7 @@
  */
 
 import Particle from '../particle.js';
+import ParticleImg from './conjugate_base.png';
 
 /**
  * A conjugate base particle.
@@ -64,9 +65,9 @@ ConjugateBase.prototype.collider_radius = 16;
  * Relative path of the image for a conjugate base.
  * @override
  * @type {string}
- * @default "assets/ConjugateBase_Gray.png"
+ * @default "./conjugate_base.png"
  */
-ConjugateBase.prototype.image_path = 'assets/ConjugateBase_Gray.png';
+ConjugateBase.prototype.image_path = ParticleImg;
 
 /**
  * Maximum possible velocity of a conjugate base.

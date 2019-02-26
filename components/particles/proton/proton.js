@@ -5,6 +5,7 @@
  */
 
 import Particle from '../particle.js';
+import ParticleImg from './proton.png';
 
 /**
  * Represents a proton particle
@@ -34,9 +35,9 @@ Proton.prototype.collider_radius = 6;
  * Relative path of the image for a proton.
  * @override
  * @type {string}
- * @default "assets/proton.png"
+ * @default "./proton.png"
  */
-Proton.prototype.image_path = 'assets/proton.png';
+Proton.prototype.image_path = ParticleImg;
 
 /**
  * Maximum possible velocity of a proton.
