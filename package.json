@@ -11,6 +11,7 @@
         "webpack-dev-server": "^3.2.1"
     },
     "dependencies": {
+        "@cmu-eberly-center/p5.play": "^1.0.0-2",
         "npm": "^6.5.0"
     }
 }

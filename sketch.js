@@ -1,5 +1,5 @@
-import * as p5 from './p5.min.js';
-import './lib/p5.play.js';
+import * as p5 from '@cmu-eberly-center/p5';
+import '@cmu-eberly-center/p5.play';
 import Proton from './lib/particles/proton.js';
 import ConjugateBase from './lib/particles/conjugate_base.js';
 import Beaker from './lib/beaker.js';
