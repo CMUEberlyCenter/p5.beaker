@@ -10,7 +10,7 @@ var sketch = function(p) {
     }
 
     p.setup = function() {
-        canvas = p.createCanvas(500,500);
+        var canvas = p.createCanvas(500,500);
         p.background(255,255,255);
         
         beaker = new Beaker(p,
