@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: beaker.js</title>
+    <title>JSDoc: Source: beaker/beaker.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: beaker.js</h1>
+    <h1 class="page-title">Source: beaker/beaker.js</h1>
 
     
 
@@ -33,9 +33,15 @@
  * @author mouse@cmu.edu (Meg Richards)
  */
 
+import * as p5 from '@cmu-eberly-center/p5';
+import BackgroundImg from './beaker.png';
+import ForegroundImg from './beaker_markings.png';
+
+/** @module beaker */
+
 /**
  * A beaker/particle container.
- * @class
+ * @class Beaker
  * @tutorial beaker-tutorial
  * @param {!object} sketch - Parent p5 sketch.
  * @param {number} [solution_width=100] - Width of area bounding particles.
@@ -45,7 +51,7 @@
  * @param {number} [solution_x=x] - X offset of area bounding particles.
  * @param {number} [solution_y=y]- Y offset of area bounding particles.
  */
-function Beaker(sketch,
+export default function Beaker(sketch,
                 solution_width=100,solution_height=100,
                 x=0,y=0,
                 solution_x=null,solution_y=null) {
@@ -109,16 +115,16 @@ function Beaker(sketch,
 /**
  * Relative path of the image for the beaker background.
  * @type {string}
- * @default "assets/beaker.png"
+ * @default "./beaker.png"
  */
-Beaker.prototype.bg_image_path = 'assets/beaker.png';
+Beaker.prototype.bg_image_path = BackgroundImg;
 
 /**
  * Relative path of the image for the beaker foreground.
  * @type {string}
- * @default "assets/beakerMarkings.png"
+ * @default "./beaker_markings.png"
  */
-Beaker.prototype.fg_image_path = 'assets/beakerMarkings.png';
+Beaker.prototype.fg_image_path = ForegroundImg;
 
 /**
  * Reference to one particle type within a beaker.
@@ -140,7 +146,7 @@ Beaker.prototype.particles = {}; // initialized indirectly via addParticles()
  * Perform any actions required before the beaker can be used.
  * @function preload
  * @static
- * @memberof Beaker
+ * @memberof module:beaker~Beaker
  * @param {object} p - Parent p5 sketch.
  */
 Beaker.prototype.preload = function(p) {
@@ -197,19 +203,21 @@ Beaker.prototype.randomPoint = function(particle_radius) {
 
 /**
  * Add some number of one type of particle to the beaker.
+ * @param {!object} particle_class - The class of particle to add.
  * @param {number} quantity - Number of particles to add.
  */
 Beaker.prototype.addParticles = function(particle_class,quantity) {
     var p = this.p;
-    this.initParticleGroup(particle_class);
+    var particle_name = particle_class.name;
+    this.initParticleGroup(particle_name);
     for (var i = 0; i &lt; quantity; i++) {
-        var particle_radius = window[particle_class].prototype.collider_radius;
+        var particle_radius = particle_class.prototype.collider_radius;
         var location = this.randomPoint(particle_radius);
         if( location ) {
-            var particle = new window[particle_class](p,
-                                                      location.getX(),
-                                                      location.getY());
-            this.addParticle(particle_class, particle);
+            var particle = new particle_class(p,
+                                              location["x"],
+                                              location["y"]);
+            this.addParticle(particle_name, particle);
         }
     }
 };
@@ -254,7 +262,7 @@ Beaker.prototype.update_particles = function() {
         this.sprite_boundary_update(sprite,min_x,min_y,max_x,max_y);
 
         this.sprite_resolve_collisions(sprite,particle.reacts_with);
-        
+
         particle.update();
     }
 };
@@ -292,13 +300,13 @@ Beaker.prototype.sprite_resolve_collisions = function(sprite,reacts_with) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Beaker.html">Beaker</a></li><li><a href="ConjugateBase.html">ConjugateBase</a></li><li><a href="Particle.html">Particle</a></li><li><a href="Proton.html">Proton</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-beaker-tutorial.html">beaker-tutorial</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-beaker.html">beaker</a></li><li><a href="module-particles.html">particles</a></li><li><a href="module-particles_conjugate_base.html">particles/conjugate_base</a></li><li><a href="module-particles_proton.html">particles/proton</a></li></ul><h3>Classes</h3><ul><li><a href="module-beaker-Beaker.html">Beaker</a></li><li><a href="module-particles_conjugate_base-ConjugateBase.html">ConjugateBase</a></li><li><a href="module-particles_proton-Proton.html">Proton</a></li><li><a href="module-particles-Particle.html">Particle</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-beaker-tutorial.html">beaker-tutorial</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 25 2019 21:07:24 GMT-0500 (Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Feb 26 2019 02:48:38 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

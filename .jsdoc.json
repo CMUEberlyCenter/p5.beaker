@@ -7,11 +7,11 @@
         "include": [
             "package.json",
             "README.md",
-            "sketch.js",
-            "lib/beaker.js",
-            "lib/particle.js",
-            "lib/particles/conjugate_base.js",
-            "lib/particles/proton.js"
+            "src/sketch.js",
+            "components/beaker/beaker.js",
+            "components/particles/particle.js",
+            "components/particles/conjugate_base/conjugate_base.js",
+            "components/particles/proton/proton.js"
         ],
         "exclude": [
              "node_modules",

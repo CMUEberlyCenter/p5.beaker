@@ -4,9 +4,11 @@
  * @author Meg Richards (mouse@cmu.edu)
  */
 
+/** @module particles */
+
 /**
  * A generic particle.
- * @class
+ * @class Particle
  * @param {!object} sketch - Parent p5 sketch.
  * @param {number} x=0 - X position of particle.
  * @param {number} y=0 - Y position of particle.
@@ -88,7 +90,7 @@ Particle.prototype.reacts_with = {};
  * Perform any actions required before particles can be created.
  * @function preload
  * @static
- * @memberof Particle
+ * @memberof module:particle~Particle
  * @param {object} p - Parent p5 sketch.
  */
 Particle.prototype.preload = function(p) {

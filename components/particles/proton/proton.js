@@ -7,10 +7,12 @@
 import Particle from '../particle.js';
 import ParticleImg from './proton.png';
 
+/** @module particles/proton */
+
 /**
  * Represents a proton particle
- * @class
- * @augments Particle
+ * @class Proton
+ * @augments module:particles~Particle
  * @param {!object} sketch - Parent sketch
  * @param {number} x=0 - X position of particle
  * @param {number} y=0 - Y position of particle

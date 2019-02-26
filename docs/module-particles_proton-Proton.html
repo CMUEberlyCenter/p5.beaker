@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Particle</title>
+    <title>JSDoc: Class: Proton</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Particle</h1>
+    <h1 class="page-title">Class: Proton</h1>
 
     
 
@@ -28,7 +28,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Particle<span class="signature">(sketch<span class="signature-attributes">non-null</span>, x, y)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-particles_proton.html">particles/proton</a>~</span>Proton<span class="signature">(sketch<span class="signature-attributes">non-null</span>, x, y)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +42,7 @@
     
 
     
-    <h4 class="name" id="Particle"><span class="type-signature"></span>new Particle<span class="signature">(sketch<span class="signature-attributes">non-null</span>, x, y)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Proton"><span class="type-signature"></span>new Proton<span class="signature">(sketch<span class="signature-attributes">non-null</span>, x, y)</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +50,7 @@
 
 
 <div class="description">
-    <p>A generic particle.</p>
+    <p>Represents a proton particle</p>
 </div>
 
 
@@ -107,7 +108,7 @@
                 </td>
             
 
-            <td class="description last"><p>Parent p5 sketch.</p></td>
+            <td class="description last"><p>Parent sketch</p></td>
         </tr>
 
     
@@ -136,7 +137,7 @@
                 </td>
             
 
-            <td class="description last"><p>X position of particle.</p></td>
+            <td class="description last"><p>X position of particle</p></td>
         </tr>
 
     
@@ -165,7 +166,7 @@
                 </td>
             
 
-            <td class="description last"><p>Y position of particle.</p></td>
+            <td class="description last"><p>Y position of particle</p></td>
         </tr>
 
     
@@ -206,7 +207,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line14">line 14</a>
+        <a href="particles_proton_proton.js.html">particles/proton/proton.js</a>, <a href="particles_proton_proton.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -236,6 +237,17 @@
 
     
     </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="module-particles-Particle.html">module:particles~Particle</a></li>
+    </ul>
+
 
     
 
@@ -286,6 +298,11 @@
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#collider_offset_x">module:particles~Particle#collider_offset_x</a>
+    </li></ul></dd>
+    
 
     
 
@@ -313,7 +330,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line28">line 28</a>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -363,6 +380,11 @@
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#collider_offset_y">module:particles~Particle#collider_offset_y</a>
+    </li></ul></dd>
+    
 
     
 
@@ -390,7 +412,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line35">line 35</a>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -414,7 +436,7 @@
 
 
 <div class="description">
-    <p>Collider radius for overlap detection between sprites.</p>
+    <p>Collider radius of a proton.</p>
 </div>
 
 
@@ -442,6 +464,11 @@
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#collider_radius">module:particles~Particle#collider_radius</a>
+    </li></ul></dd>
+    
 
     
 
@@ -460,86 +487,14 @@
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy">
-            <li>1</li>
+            <li>6</li>
         </ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line42">line 42</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="image"><span class="type-signature"></span>image<span class="type-signature"> :object</span></h4>
-
-
-
-
-<div class="description">
-    <p>The image to be used for the particle sprite.</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">object</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line99">line 99</a>
+        <a href="particles_proton_proton.js.html">particles/proton/proton.js</a>, <a href="particles_proton_proton.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -563,7 +518,7 @@
 
 
 <div class="description">
-    <p>Relative path of the image for the particle's sprite.</p>
+    <p>Relative path of the image for a proton.</p>
 </div>
 
 
@@ -591,6 +546,11 @@
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#image_path">module:particles~Particle#image_path</a>
+    </li></ul></dd>
+    
 
     
 
@@ -609,14 +569,14 @@
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy">
-            <li>null</li>
+            <li>"./proton.png"</li>
         </ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line49">line 49</a>
+        <a href="particles_proton_proton.js.html">particles/proton/proton.js</a>, <a href="particles_proton_proton.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -640,7 +600,7 @@
 
 
 <div class="description">
-    <p>Maximum for possible velocities of the particle.</p>
+    <p>Maximum possible velocity of a proton.</p>
 </div>
 
 
@@ -668,6 +628,11 @@
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#max_velocity">module:particles~Particle#max_velocity</a>
+    </li></ul></dd>
+    
 
     
 
@@ -686,14 +651,14 @@
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy">
-            <li>0</li>
+            <li>3</li>
         </ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line56">line 56</a>
+        <a href="particles_proton_proton.js.html">particles/proton/proton.js</a>, <a href="particles_proton_proton.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -743,6 +708,11 @@
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#p">module:particles~Particle#p</a>
+    </li></ul></dd>
+    
 
     
 
@@ -765,7 +735,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line19">line 19</a>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -783,7 +753,7 @@
 
         
             
-<h4 class="name" id="reacts_with"><span class="type-signature"></span>reacts_with<span class="type-signature"> :<a href="global.html#ReactionsHash">ReactionsHash</a></span></h4>
+<h4 class="name" id="reacts_with"><span class="type-signature"></span>reacts_with<span class="type-signature"> :ReactionsHash</span></h4>
 
 
 
@@ -798,7 +768,7 @@
     <ul>
         <li>
             
-<span class="param-type"><a href="global.html#ReactionsHash">ReactionsHash</a></span>
+<span class="param-type">ReactionsHash</span>
 
 
         </li>
@@ -814,6 +784,11 @@
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#reacts_with">module:particles~Particle#reacts_with</a>
+    </li></ul></dd>
     
 
     
@@ -842,7 +817,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line85">line 85</a>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -863,141 +838,6 @@
 
     
         <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".preload"><span class="type-signature">(static) </span>preload<span class="signature">(p)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Perform any actions required before particles can be created.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>p</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Parent p5 sketch.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line87">line 87</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
             
@@ -1121,6 +961,11 @@
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#createSprite">module:particles~Particle#createSprite</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1143,7 +988,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line107">line 107</a>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line111">line 111</a>
     </li></ul></dd>
     
 
@@ -1208,6 +1053,11 @@ where max_velocity is the particle's max velocity property.</p>
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#randomVelocity">module:particles~Particle#randomVelocity</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1230,7 +1080,7 @@ where max_velocity is the particle's max velocity property.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line128">line 128</a>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line132">line 132</a>
     </li></ul></dd>
     
 
@@ -1316,6 +1166,11 @@ where max_velocity is the particle's max velocity property.</p>
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-particles-Particle.html#update">module:particles~Particle#update</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1338,7 +1193,7 @@ where max_velocity is the particle's max velocity property.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="particle.js.html">particle.js</a>, <a href="particle.js.html#line136">line 136</a>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line140">line 140</a>
     </li></ul></dd>
     
 
@@ -1382,13 +1237,13 @@ where max_velocity is the particle's max velocity property.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Beaker.html">Beaker</a></li><li><a href="ConjugateBase.html">ConjugateBase</a></li><li><a href="Particle.html">Particle</a></li><li><a href="Proton.html">Proton</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-beaker-tutorial.html">beaker-tutorial</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-beaker.html">beaker</a></li><li><a href="module-particles.html">particles</a></li><li><a href="module-particles_conjugate_base.html">particles/conjugate_base</a></li><li><a href="module-particles_proton.html">particles/proton</a></li></ul><h3>Classes</h3><ul><li><a href="module-beaker-Beaker.html">Beaker</a></li><li><a href="module-particles_conjugate_base-ConjugateBase.html">ConjugateBase</a></li><li><a href="module-particles_proton-Proton.html">Proton</a></li><li><a href="module-particles-Particle.html">Particle</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-beaker-tutorial.html">beaker-tutorial</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 25 2019 21:07:24 GMT-0500 (Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Feb 26 2019 02:48:38 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

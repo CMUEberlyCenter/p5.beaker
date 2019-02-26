@@ -9,9 +9,11 @@ import * as p5 from '@cmu-eberly-center/p5';
 import BackgroundImg from './beaker.png';
 import ForegroundImg from './beaker_markings.png';
 
+/** @module beaker */
+
 /**
  * A beaker/particle container.
- * @class
+ * @class Beaker
  * @tutorial beaker-tutorial
  * @param {!object} sketch - Parent p5 sketch.
  * @param {number} [solution_width=100] - Width of area bounding particles.
@@ -116,7 +118,7 @@ Beaker.prototype.particles = {}; // initialized indirectly via addParticles()
  * Perform any actions required before the beaker can be used.
  * @function preload
  * @static
- * @memberof Beaker
+ * @memberof module:beaker~Beaker
  * @param {object} p - Parent p5 sketch.
  */
 Beaker.prototype.preload = function(p) {

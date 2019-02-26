@@ -8,10 +8,12 @@
 import Particle from '../particle.js';
 import ParticleImg from './conjugate_base.png';
 
+/** @module particles/conjugate_base */
+
 /**
  * A conjugate base particle.
- * @class
- * @augments Particle
+ * @class ConjugateBase
+ * @augments module:particles~Particle
  * @param {!object} sketch - Parent p5 sketch.
  * @param {number} x=0 - X position of particle.
  * @param {number} y=0 - Y position of particle.
