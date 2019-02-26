@@ -96,8 +96,32 @@ ConjugateBase.prototype.reacts_with = {
             // Preserve original proton drawing order and place just above base
             baseParticle.proton.restore_depth = protonSprite.depth;
             protonSprite.depth = baseSprite.depth+.5;
+            // Register callback for if the proton is removed from the simulation
+            protonParticle.cleanups["ConjugateBase"] = function(proton) {
+                /**
+                 * @todo BUG: This should only happen to protons joined to a
+                 * base, so there should always be a base particle... but
+                 * sometimes it's null.
+                 */
+                var baseParticle = proton.base.particle;
+                if( baseParticle ) {
+                    baseParticle.release_proton();
+                    console.log(baseParticle.release_after);
+                }
+            };
         }
     },
+};
+
+/** @inheritdoc */
+ConjugateBase.prototype.remove = function() {
+    var cleanups = this.cleanups;
+    for( var i in Object.keys(cleanups) ) {
+        var particle_name = Object.keys(cleanups)[i];
+        cleanups[particle_name](this);
+    }
+    this.release_proton();
+    this.sprite.remove();
 };
 
 /** @inheritdoc */
@@ -116,13 +140,26 @@ ConjugateBase.prototype.update = function() {
             // Released; do not update proton location to allow separation
         }
         else {
-            // Restore proton's drawing order
-            proton.particle.sprite.depth = proton.restore_depth;
-            proton.restore_depth = null;
-            // Release complete; allow particles to join
-            proton.release_after = null;
-            proton.particle.base.particle = null;
-            proton.particle = null;
+            // Release
+            this.release_proton();
         }
+    }
+};
+
+/**
+ * Cleanly release a proton from this conjugate base.
+ */
+ConjugateBase.prototype.release_proton = function() {
+    var proton = this.proton;
+    if( proton.release_after ) {
+        // Deregister cleanup callback; proton was not removed from the simulation
+        delete proton.particle.cleanups["ConjugateBase"];
+        // Restore proton's drawing order
+        proton.particle.sprite.depth = proton.restore_depth;
+        proton.restore_depth = null;
+        // Release complete; allow particles to join
+        proton.release_after = null;
+        proton.particle.base.particle = null;
+        proton.particle = null;
     }
 };

@@ -67,7 +67,7 @@ Particle.prototype.max_velocity = 0;
  *   "Proton":
  *   function(baseSprite,protonSprite) {
  *     console.log("Just hit a Proton!");
- *   },
+ *   }
  * }
  */
 
@@ -85,6 +85,38 @@ Particle.prototype.max_velocity = 0;
  * @default {}
  */
 Particle.prototype.reacts_with = {};
+
+/**
+ * Cleanups necesary to perform for other particles if this particle is removed
+ * from the simulation. Particles register and deregister their cleanup
+ * functions when they join and separate this particle, respectively.
+ * @typedef CleanupHash
+ * @property {string} particle_name - The particle type requiring cleanup.
+ * @property {CleanupFunction} cleanup - A function to perform the cleanup.
+ * @example
+ * {
+ *   "ConjugateBase":
+ *   function(proton) {
+ *     var baseParticle = proton.base.particle;
+ *     baseParticle.release_proton();
+ *   }
+ * }
+ */
+
+/**
+ * Defines a cleanup procedure for a particle if this particle is removed
+ * from the simulation.
+ * @typedef CleanupFunction
+ * @type function
+ * @param {object} particle - The particle being removed from the simulation.
+ */
+
+/**
+ * Cleanup function registry.
+ * @type {CleanupHash}
+ * @default {}
+ */
+Particle.prototype.cleanups = {};
 
 /**
  * Perform any actions required before particles can be created.
@@ -130,6 +162,18 @@ Particle.prototype.createSprite = function(x=0,y=0) {
 Particle.prototype.randomVelocity = function() {
     // Generate a random number [0,2*max_velocity]; then subtract max velocity
     return this.max_velocity - Math.random()*2*this.max_velocity;
+};
+
+/**
+ * Remove the particle from the simulation.
+ */
+Particle.prototype.remove = function(){
+    var cleanups = this.cleanups;
+    for( var i in Object.keys(cleanups) ) {
+        var particle_name = Object.keys(cleanups)[i];
+        cleanups[particle_name](this);
+    }
+    this.sprite.remove();
 };
 
 /**

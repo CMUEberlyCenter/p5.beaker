@@ -205,6 +205,24 @@ Beaker.prototype.addParticle = function(particle_key, particle) {
     //this.particles[particle_key].particles.push(particle);
 };
 
+/**
+ * Remove some number of one type of particle from the beaker.
+ * @param {!object} particle_class - The class of particle to remove.
+ * @param {number} quantity - Number of particles to remove.
+ */
+Beaker.prototype.removeParticles = function(particle_class,quantity) {
+    var p = this.p;
+    var particle_name = particle_class.name;
+    var num_particles = this.particles[particle_name].sprites.size();
+    if( num_particles < quantity ) {
+        quantity = num_particles;
+    }
+    for( var i = quantity; i > 0; i--) {
+        var sprite = this.particles[particle_name].sprites.get(i-1);
+        sprite.particle.remove();
+    }
+};
+
 Beaker.prototype.initParticleGroup = function(particle_class) {
     var p = this.p;
     if( !this.particles[particle_class] ) {
