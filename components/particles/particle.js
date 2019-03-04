@@ -20,6 +20,38 @@ export default function Particle(sketch,x=0,y=0) {
      */
     this.p = sketch;
     this.createSprite(x,y);
+
+    /**
+     * Cleanups necesary to perform for other particles if this particle is removed
+     * from the simulation. Particles register and deregister their cleanup
+     * functions when they join and separate this particle, respectively.
+     * @typedef CleanupHash
+     * @property {string} particle_name - The particle type requiring cleanup.
+     * @property {CleanupFunction} cleanup - A function to perform the cleanup.
+     * @example
+     * {
+     *   "ConjugateBase":
+     *   function(proton) {
+     *     var baseParticle = proton.base.particle;
+     *     baseParticle.release_proton();
+     *   }
+     * }
+     */
+    
+    /**
+     * Defines a cleanup procedure for a particle if this particle is removed
+     * from the simulation.
+     * @typedef CleanupFunction
+     * @type function
+     * @param {object} particle - The particle being removed from the simulation.
+     */
+
+    /**
+     * Cleanup function registry.
+     * @type {CleanupHash}
+     * @default {}
+     */
+    this.cleanups = {};
 }
 
 /**
@@ -85,38 +117,6 @@ Particle.prototype.max_velocity = 0;
  * @default {}
  */
 Particle.prototype.reacts_with = {};
-
-/**
- * Cleanups necesary to perform for other particles if this particle is removed
- * from the simulation. Particles register and deregister their cleanup
- * functions when they join and separate this particle, respectively.
- * @typedef CleanupHash
- * @property {string} particle_name - The particle type requiring cleanup.
- * @property {CleanupFunction} cleanup - A function to perform the cleanup.
- * @example
- * {
- *   "ConjugateBase":
- *   function(proton) {
- *     var baseParticle = proton.base.particle;
- *     baseParticle.release_proton();
- *   }
- * }
- */
-
-/**
- * Defines a cleanup procedure for a particle if this particle is removed
- * from the simulation.
- * @typedef CleanupFunction
- * @type function
- * @param {object} particle - The particle being removed from the simulation.
- */
-
-/**
- * Cleanup function registry.
- * @type {CleanupHash}
- * @default {}
- */
-Particle.prototype.cleanups = {};
 
 /**
  * Perform any actions required before particles can be created.

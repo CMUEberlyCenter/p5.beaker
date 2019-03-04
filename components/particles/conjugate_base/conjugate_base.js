@@ -98,15 +98,9 @@ ConjugateBase.prototype.reacts_with = {
             protonSprite.depth = baseSprite.depth+.5;
             // Register callback for if the proton is removed from the simulation
             protonParticle.cleanups["ConjugateBase"] = function(proton) {
-                /**
-                 * @todo BUG: This should only happen to protons joined to a
-                 * base, so there should always be a base particle... but
-                 * sometimes it's null.
-                 */
                 var baseParticle = proton.base.particle;
                 if( baseParticle ) {
                     baseParticle.release_proton();
-                    console.log(baseParticle.release_after);
                 }
             };
         }
