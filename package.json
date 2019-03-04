@@ -1,8 +1,9 @@
 {
     "scripts": {
         "doc": "jsdoc --configure .jsdoc.json",
-        "build": "webpack",
-        "start": "echo 'Starting Webpack dev server! \n' && webpack-dev-server"
+        "build": "webpack --verbose --production",
+        "start": "echo 'Starting Webpack dev server! \n' && webpack-dev-server",
+        "watch": "webpack --watch"
     },
     "devDependencies": {
         "file-loader": "^3.0.1",
@@ -12,7 +13,7 @@
         "webpack-dev-server": "^3.2.1"
     },
     "dependencies": {
-        "@cmu-eberly-center/p5.play": "^1.0.0-2",
+        "@cmu-eberly-center/p5.play": "^1.1.0",
         "npm": "^6.5.0"
     }
 }
