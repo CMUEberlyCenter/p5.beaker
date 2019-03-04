@@ -48,7 +48,7 @@ export default function ConjugateBase(sketch,x=0,y=0) {
     this.proton.particle = null;
     this.proton.offset_x = 10;
     this.proton.offset_y = -10;
-    this.proton.restore_depth = null; //TODO
+    this.proton.restore_depth = null;
     this.proton.release_after_range = [0,5000];
     this.proton.post_release_duration = 750;
     this.proton.release_after = null;
@@ -116,6 +116,7 @@ ConjugateBase.prototype.remove = function() {
     }
     this.release_proton();
     this.sprite.remove();
+    delete this.particle;
 };
 
 /** @inheritdoc */

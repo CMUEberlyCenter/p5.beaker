@@ -37,7 +37,7 @@ export default function Particle(sketch,x=0,y=0) {
      *   }
      * }
      */
-    
+
     /**
      * Defines a cleanup procedure for a particle if this particle is removed
      * from the simulation.
@@ -174,6 +174,7 @@ Particle.prototype.remove = function(){
         cleanups[particle_name](this);
     }
     this.sprite.remove();
+    delete this.sprite;
 };
 
 /**

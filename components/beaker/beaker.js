@@ -220,6 +220,7 @@ Beaker.prototype.removeParticles = function(particle_class,quantity) {
     for( var i = quantity; i > 0; i--) {
         var sprite = this.particles[particle_name].sprites.get(i-1);
         sprite.particle.remove();
+        delete sprite.particle;
     }
 };
 
