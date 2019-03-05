@@ -86,6 +86,9 @@ ConjugateBase.prototype.reacts_with = {
         var protonParticle = protonSprite.particle;
         if( !protonParticle.base.particle &&
             !baseParticle.proton.particle ) {
+            // Execute pre-reaction callback
+            ConjugateBase.prototype.execute_callback("reacts_with_proton",
+                                                     "pre",baseParticle);
             // Allow base to capture the proton; set random release time
             baseParticle.proton.release_after = Date.now() +
                 baseParticle.proton.release_after_range[0] +
@@ -103,12 +106,17 @@ ConjugateBase.prototype.reacts_with = {
                     baseParticle.release_proton();
                 }
             };
+            // Execute post-reaction callback
+            ConjugateBase.prototype.execute_callback("reacts_with_proton",
+                                                     "post",baseParticle);
         }
+
     },
 };
 
 /** @inheritdoc */
 ConjugateBase.prototype.remove = function() {
+    this.execute_callback("remove","pre",this);
     var cleanups = this.cleanups;
     for( var i in Object.keys(cleanups) ) {
         var particle_name = Object.keys(cleanups)[i];
@@ -117,10 +125,12 @@ ConjugateBase.prototype.remove = function() {
     this.release_proton();
     this.sprite.remove();
     delete this.particle;
+    this.execute_callback("remove","post",this);
 };
 
 /** @inheritdoc */
 ConjugateBase.prototype.update = function() {
+    this.execute_callback("update","pre",this);
     var proton = this.proton;
     if( proton.release_after ) {
         var now = Date.now();
@@ -139,12 +149,14 @@ ConjugateBase.prototype.update = function() {
             this.release_proton();
         }
     }
+    this.execute_callback("update","post",this);
 };
 
 /**
  * Cleanly release a proton from this conjugate base.
  */
 ConjugateBase.prototype.release_proton = function() {
+    this.execute_callback("release_proton","pre",this);
     var proton = this.proton;
     if( proton.release_after ) {
         // Deregister cleanup callback; proton was not removed from the simulation
@@ -157,4 +169,5 @@ ConjugateBase.prototype.release_proton = function() {
         proton.particle.base.particle = null;
         proton.particle = null;
     }
+    this.execute_callback("release_proton","post",this);
 };

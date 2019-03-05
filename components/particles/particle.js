@@ -119,6 +119,79 @@ Particle.prototype.max_velocity = 0;
 Particle.prototype.reacts_with = {};
 
 /**
+ * Particle function names/lifecycle events and their corresponding
+ * CallbackOrderHash.
+ * @typedef CallbacksHash
+ * @property {string} function_name - The particle function triggering the
+ *   callback.
+ * @property {CallbackOrderHash} callback_order_hash - A map of relative
+ *   callback execution times to callback functions.
+ * @example
+ * {
+ *   "update":
+ *   {
+ *     "pre":
+ *       function(baseParticle) {
+ *         console.log("About to update particle!");
+ *       },
+ *     "post":
+ *       function(baseParticle) {
+ *         console.log("Just finished particle update!");
+ *       }
+ *   }
+ * }
+ */
+
+/**
+ * Relative callback execution times and their corresponding callback function.
+ * @typedef CallbackOrderHash
+ * @property {string} callback_order - The relative callback execution time.
+ * @property {function} callback - A function to execute at the relative time.
+ */
+
+/**
+ * Callbacks requested for particle lifecycle events.
+ * @type {CallbacksHash}
+ * @default {}
+ */
+Particle.prototype.callbacks = {};
+
+/**
+ * Register a callback function with the particle.
+ * @function register_callback
+ * @static
+ * @memberof module:particles~Particle
+ * @param {!string} function_name - Name of function to trigger callback.
+ * @param {!string} callback_order - When to execute callback function.
+ * @param {!function} callback - Callback function to execute.
+ */
+Particle.prototype.register_callback = function(function_name,
+                                                callback_order,callback) {
+    var callbacks = this.callbacks[function_name];
+    if( callbacks == null ) {
+        this.callbacks[function_name] = {};
+    }
+    this.callbacks[function_name][callback_order] = callback;
+};
+
+/**
+ * Execute any callbacks for the active function of the particle.
+ * @function execute_callback
+ * @static
+ * @memberof module:particles~Particle
+ * @param {!string} function_name - Name of active function.
+ * @param {!string} callback_order - Execution position for active function.
+ * @param {?object} param - Context for the callback function.
+ */
+Particle.prototype.execute_callback = function(function_name,
+                                               callback_order,param) {
+    var callback = this.callbacks[function_name];
+    if( callback && typeof callback[callback_order] == 'function' ) {
+        callback[callback_order](param);
+    }
+};
+
+/**
  * Perform any actions required before particles can be created.
  * @function preload
  * @static
@@ -168,6 +241,7 @@ Particle.prototype.randomVelocity = function() {
  * Remove the particle from the simulation.
  */
 Particle.prototype.remove = function(){
+    this.execute_callback("remove","pre",this);
     var cleanups = this.cleanups;
     for( var i in Object.keys(cleanups) ) {
         var particle_name = Object.keys(cleanups)[i];
@@ -175,9 +249,13 @@ Particle.prototype.remove = function(){
     }
     this.sprite.remove();
     delete this.sprite;
+    this.execute_callback("remove","post",this);
 };
 
 /**
  * Update this particle during the sketch's draw iteration.
  */
-Particle.prototype.update = function(){};
+Particle.prototype.update = function(){
+    this.execute_callback("update","pre",this);
+    this.execute_callback("update","post",this);
+};
