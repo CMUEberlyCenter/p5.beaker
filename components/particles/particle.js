@@ -22,9 +22,11 @@ export default function Particle(sketch,x=0,y=0) {
     this.createSprite(x,y);
 
     /**
-     * Cleanups necesary to perform for other particles if this particle is removed
-     * from the simulation. Particles register and deregister their cleanup
-     * functions when they join and separate this particle, respectively.
+     * Cleanups necesary to perform for other particles if this particle is
+     * removed from the simulation. Particles register and deregister their
+     * cleanup functions when they join and separate this particle,
+     * respectively.
+     *
      * @typedef CleanupHash
      * @property {string} particle_name - The particle type requiring cleanup.
      * @property {CleanupFunction} cleanup - A function to perform the cleanup.
@@ -43,7 +45,8 @@ export default function Particle(sketch,x=0,y=0) {
      * from the simulation.
      * @typedef CleanupFunction
      * @type function
-     * @param {object} particle - The particle being removed from the simulation.
+     * @param {object} particle - The particle being removed from the
+     *   simulation.
      */
 
     /**
@@ -168,7 +171,7 @@ Particle.prototype.callbacks = {};
 Particle.prototype.register_callback = function(function_name,
                                                 callback_order,callback) {
     var callbacks = this.callbacks[function_name];
-    if( callbacks == null ) {
+    if (callbacks == null) {
         this.callbacks[function_name] = {};
     }
     this.callbacks[function_name][callback_order] = callback;
@@ -186,7 +189,7 @@ Particle.prototype.register_callback = function(function_name,
 Particle.prototype.execute_callback = function(function_name,
                                                callback_order,param) {
     var callback = this.callbacks[function_name];
-    if( callback && typeof callback[callback_order] == 'function' ) {
+    if (callback && typeof callback[callback_order] == 'function') {
         callback[callback_order](param);
     }
 };
@@ -213,9 +216,9 @@ Particle.prototype.preload = function(p) {
  */
 Particle.prototype.createSprite = function(x=0,y=0) {
     var p = this.p;
-    if( p ) {
+    if (p) {
         this.sprite = p.createSprite(x,y);
-        if( this.image != null )
+        if (this.image != null)
             this.sprite.addImage("default",this.image);
         this.sprite.setCollider('circle',
                                 this.collider_offset_x,
@@ -240,10 +243,10 @@ Particle.prototype.randomVelocity = function() {
 /**
  * Remove the particle from the simulation.
  */
-Particle.prototype.remove = function(){
+Particle.prototype.remove = function() {
     this.execute_callback("remove","pre",this);
     var cleanups = this.cleanups;
-    for( var i in Object.keys(cleanups) ) {
+    for (var i in Object.keys(cleanups)) {
         var particle_name = Object.keys(cleanups)[i];
         cleanups[particle_name](this);
     }
@@ -255,7 +258,7 @@ Particle.prototype.remove = function(){
 /**
  * Update this particle during the sketch's draw iteration.
  */
-Particle.prototype.update = function(){
+Particle.prototype.update = function() {
     this.execute_callback("update","pre",this);
     this.execute_callback("update","post",this);
 };

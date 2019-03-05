@@ -24,9 +24,9 @@ import ForegroundImg from './beaker_markings.png';
  * @param {number} [solution_y=y]- Y offset of area bounding particles.
  */
 export default function Beaker(sketch,
-                solution_width=100,solution_height=100,
-                x=0,y=0,
-                solution_x=null,solution_y=null) {
+                               solution_width=100,solution_height=100,
+                               x=0,y=0,
+                               solution_x=null,solution_y=null) {
     /**
      * The parent p5 sketch containing the particle.
      * @type {object}
@@ -133,11 +133,11 @@ Beaker.prototype.preload = function(p) {
 Beaker.prototype.draw = function() {
     var p = this.p;
     // Draw beaker background
-    p.image(this.background, this.x, this.y);
+    p.image(this.background,this.x,this.y);
     // Draw particles
     p5.prototype.drawSprites(this.all_particle_sprites);
     // Draw beaker foreground markings
-    p.image(this.foreground, this.fg_x, this.fg_y);
+    p.image(this.foreground,this.fg_x,this.fg_y);
 };
 
 /**
@@ -160,8 +160,8 @@ Beaker.prototype.draw = function() {
  *   particle will not fit.
  */
 Beaker.prototype.randomPoint = function(particle_radius) {
-    if( particle_radius*2 >= this.solution.width ||
-        particle_radius*2 >= this.solution.height )
+    if (particle_radius*2 >= this.solution.width ||
+        particle_radius*2 >= this.solution.height)
         return null;
     var min_x = this.solution.x + particle_radius;
     var min_y = this.solution.y + particle_radius;
@@ -170,7 +170,7 @@ Beaker.prototype.randomPoint = function(particle_radius) {
     var max_height = this.solution.height - 2*particle_radius;
     var x = min_x + Math.random()*max_width;
     var y = min_y + Math.random()*max_height;
-    return {"x":x,"y":y};
+    return {"x": x,"y": y};
 };
 
 /**
@@ -185,11 +185,11 @@ Beaker.prototype.addParticles = function(particle_class,quantity) {
     for (var i = 0; i < quantity; i++) {
         var particle_radius = particle_class.prototype.collider_radius;
         var location = this.randomPoint(particle_radius);
-        if( location ) {
+        if (location) {
             var particle = new particle_class(p,
                                               location["x"],
                                               location["y"]);
-            this.addParticle(particle_name, particle);
+            this.addParticle(particle_name,particle);
         }
     }
 };
@@ -199,10 +199,9 @@ Beaker.prototype.addParticles = function(particle_class,quantity) {
  * @private
  * @param {number} quantity - Number of particles to add.
  */
-Beaker.prototype.addParticle = function(particle_key, particle) {
+Beaker.prototype.addParticle = function(particle_key,particle) {
     this.particles[particle_key].sprites.add(particle.sprite);
     this.all_particle_sprites.add(particle.sprite);
-    //this.particles[particle_key].particles.push(particle);
 };
 
 /**
@@ -211,13 +210,12 @@ Beaker.prototype.addParticle = function(particle_key, particle) {
  * @param {number} quantity - Number of particles to remove.
  */
 Beaker.prototype.removeParticles = function(particle_class,quantity) {
-    var p = this.p;
     var particle_name = particle_class.name;
     var num_particles = this.particles[particle_name].sprites.size();
-    if( num_particles < quantity ) {
+    if (num_particles < quantity) {
         quantity = num_particles;
     }
-    for( var i = quantity; i > 0; i--) {
+    for (var i = quantity; i > 0; i--) {
         var sprite = this.particles[particle_name].sprites.get(i-1);
         sprite.particle.remove();
         delete sprite.particle;
@@ -226,12 +224,11 @@ Beaker.prototype.removeParticles = function(particle_class,quantity) {
 
 Beaker.prototype.initParticleGroup = function(particle_class) {
     var p = this.p;
-    if( !this.particles[particle_class] ) {
+    if (!this.particles[particle_class]) {
         this.particles[particle_class] = {};
         this.particles[particle_class].sprites = new p.Group();
     }
 };
-
 
 Beaker.prototype.step = function() {
     this.update_particles();
@@ -246,7 +243,7 @@ Beaker.prototype.update_particles = function() {
 
     var sprites = this.all_particle_sprites;
 
-    for( var j = 0; j<sprites.length; j++ ){
+    for (var j = 0; j<sprites.length; j++) {
         var sprite = sprites[j];
         var particle = sprite.particle;
 
@@ -258,24 +255,25 @@ Beaker.prototype.update_particles = function() {
     }
 };
 
-Beaker.prototype.sprite_boundary_update = function(sprite,min_x,min_y,max_x,max_y) {
-    if( sprite.overlapPoint(min_x,sprite.position.y) ) {
+Beaker.prototype.sprite_boundary_update = function(sprite,
+                                                   min_x,min_y,max_x,max_y) {
+    if (sprite.overlapPoint(min_x,sprite.position.y)) {
         sprite.velocity.x = Math.abs(sprite.velocity.x);
     }
-    else if( sprite.overlapPoint(max_x,sprite.position.y) ) {
+    else if (sprite.overlapPoint(max_x,sprite.position.y)) {
         sprite.velocity.x = -Math.abs(sprite.velocity.x);
     }
-    if( sprite.overlapPoint(sprite.position.x,min_y) ) {
+    if (sprite.overlapPoint(sprite.position.x,min_y)) {
         sprite.velocity.y = Math.abs(sprite.velocity.y);
     }
-    else if( sprite.overlapPoint(sprite.position.x,max_y) ) {
+    else if (sprite.overlapPoint(sprite.position.x,max_y)) {
         sprite.velocity.y = -Math.abs(sprite.velocity.y);
     }
 }
 
 Beaker.prototype.sprite_resolve_collisions = function(sprite,reacts_with) {
     var beaker_particles = this.particles;
-    for( var i in Object.keys(reacts_with) ) {
+    for (var i in Object.keys(reacts_with)) {
         var target_key = Object.keys(reacts_with)[i]; // e.g.: "Proton"
         var target_group = beaker_particles[target_key].sprites;
         sprite.overlap(target_group,reacts_with[target_key]);

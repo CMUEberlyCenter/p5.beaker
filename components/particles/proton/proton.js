@@ -22,7 +22,7 @@ export default function Proton(sketch,x=0,y=0) {
     this.createSprite(x,y);
     this.base = {};
     this.base.particle = null;
-};
+}
 Proton.prototype = new Particle();
 
 /**

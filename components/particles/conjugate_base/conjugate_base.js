@@ -40,9 +40,9 @@ export default function ConjugateBase(sketch,x=0,y=0) {
      *   milliseconds a previously joined proton & conjugate base will be unable
      *   to rejoin with other particles after separation.
      * @property {number} release_after - A time in milliseconds, after which a
-     *   proton should be released. A non-null release_after indicates a joined or
-     *   recently separated (undergoing post_release_duration) pair of conjugate
-     *   base and proton.
+     *   proton should be released. A non-null release_after indicates a joined
+     *   or recently separated (undergoing post_release_duration) pair of
+     *   conjugate base and proton.
      */
     this.proton = {};
     this.proton.particle = null;
@@ -84,8 +84,8 @@ ConjugateBase.prototype.reacts_with = {
     "Proton": function(baseSprite,protonSprite) {
         var baseParticle = baseSprite.particle;
         var protonParticle = protonSprite.particle;
-        if( !protonParticle.base.particle &&
-            !baseParticle.proton.particle ) {
+        if (!protonParticle.base.particle &&
+            !baseParticle.proton.particle) {
             // Execute pre-reaction callback
             ConjugateBase.prototype.execute_callback("reacts_with_proton",
                                                      "pre",baseParticle);
@@ -99,10 +99,10 @@ ConjugateBase.prototype.reacts_with = {
             // Preserve original proton drawing order and place just above base
             baseParticle.proton.restore_depth = protonSprite.depth;
             protonSprite.depth = baseSprite.depth+.5;
-            // Register callback for if the proton is removed from the simulation
+            // Register callback for if the proton is removed from the sim
             protonParticle.cleanups["ConjugateBase"] = function(proton) {
                 var baseParticle = proton.base.particle;
-                if( baseParticle ) {
+                if (baseParticle) {
                     baseParticle.release_proton();
                 }
             };
@@ -111,14 +111,14 @@ ConjugateBase.prototype.reacts_with = {
                                                      "post",baseParticle);
         }
 
-    },
+    }
 };
 
 /** @inheritdoc */
 ConjugateBase.prototype.remove = function() {
     this.execute_callback("remove","pre",this);
     var cleanups = this.cleanups;
-    for( var i in Object.keys(cleanups) ) {
+    for (var i in Object.keys(cleanups)) {
         var particle_name = Object.keys(cleanups)[i];
         cleanups[particle_name](this);
     }
@@ -132,16 +132,18 @@ ConjugateBase.prototype.remove = function() {
 ConjugateBase.prototype.update = function() {
     this.execute_callback("update","pre",this);
     var proton = this.proton;
-    if( proton.release_after ) {
+    if (proton.release_after) {
         var now = Date.now();
-        if( now < proton.release_after ) {
+        if (now < proton.release_after) {
             // Not yet released; update proton location
             var protonSprite = proton.particle.sprite;
             var baseSprite = this.sprite;
-            protonSprite.position.x = baseSprite.position.x + this.proton.offset_x;
-            protonSprite.position.y = baseSprite.position.y + this.proton.offset_y;
+            protonSprite.position.x = baseSprite.position.x +
+                this.proton.offset_x;
+            protonSprite.position.y = baseSprite.position.y +
+                this.proton.offset_y;
         }
-        else if( now < (proton.release_after + proton.post_release_duration) ) {
+        else if (now < (proton.release_after + proton.post_release_duration)) {
             // Released; do not update proton location to allow separation
         }
         else {
@@ -158,8 +160,8 @@ ConjugateBase.prototype.update = function() {
 ConjugateBase.prototype.release_proton = function() {
     this.execute_callback("release_proton","pre",this);
     var proton = this.proton;
-    if( proton.release_after ) {
-        // Deregister cleanup callback; proton was not removed from the simulation
+    if (proton.release_after) {
+        // Deregister cleanup callback; proton was not removed from the sim
         delete proton.particle.cleanups["ConjugateBase"];
         // Restore proton's drawing order
         proton.particle.sprite.depth = proton.restore_depth;
