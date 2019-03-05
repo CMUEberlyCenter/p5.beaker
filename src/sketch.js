@@ -2,7 +2,7 @@ import * as p5 from '@cmu-eberly-center/p5';
 import '@cmu-eberly-center/p5.play';
 import Proton from '../components/particles/proton/proton.js';
 import ConjugateBase from '../components/particles/conjugate_base/conjugate_base.js';
-import StrongConjugateBase from '../components/particles/conjugate_base/strong/strong.js';
+import WeakConjugateBase from '../components/particles/conjugate_base/weak/weak.js';
 import Beaker from '../components/beaker/beaker.js';
 
 var sketch = function(p) {
@@ -12,7 +12,7 @@ var sketch = function(p) {
     
     p.preload = function() {
         ConjugateBase.prototype.preload(p);
-        StrongConjugateBase.prototype.preload(p);
+        WeakConjugateBase.prototype.preload(p);
         Proton.prototype.preload(p);
         Beaker.prototype.preload(p);
     }
@@ -27,7 +27,7 @@ var sketch = function(p) {
                             38,75);
 
         beaker.addParticles(ConjugateBase,numConjugateBases);
-        beaker.addParticles(StrongConjugateBase,numStrongConjugateBases);
+        beaker.addParticles(WeakConjugateBase,numStrongConjugateBases);
         beaker.addParticles(Proton,numProtons);
 
         beaker.removeParticles(ConjugateBase,6);
