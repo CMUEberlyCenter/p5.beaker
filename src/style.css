@@ -1,0 +1,32 @@
+#num-protons {
+    position: absolute;
+    left: 410px;
+    top: 200px;
+    width: 50px;
+}
+
+#particle-table {
+    position: absolute;
+    left: 100px;
+    top: 380px;
+}
+                
+#particle-table > div {
+    float:left;
+    text-align:center;
+}
+
+#particle-table div.particle {
+    position: relative;
+    height: 40px;
+}
+
+#particle-table div.particle img.proton {
+    position: absolute;
+    left: 26px;
+    top: 0;
+}
+
+#particle-table .label {
+    margin:0 .2em;
+}
