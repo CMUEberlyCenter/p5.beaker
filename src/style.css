@@ -1,8 +1,28 @@
-#num-protons {
+#beaker,
+#plot {
+    float: left;
+}
+
+#ph {
     position: absolute;
     left: 410px;
     top: 200px;
-    width: 50px;
+    width: 55px;
+}
+#hph-label {
+    position: absolute;
+    left: 420px;
+    top: 5px;
+}
+#high-label {
+    position: absolute;
+    left: 420px;
+    top: 32px;
+}
+#low-label {
+    position: absolute;
+    left: 420px;
+    top: 332px;
 }
 
 #particle-table {
@@ -29,4 +49,23 @@
 
 #particle-table .label {
     margin:0 .2em;
+}
+
+input[type="range"]{
+    width: 300px;
+    height: 25px;
+    transform: rotate(270deg);
+    position: absolute;
+    top:195px;
+    left:230px;
+}
+input[type="range"]::-moz-range-track {
+    padding: 0 10px;
+    background: repeating-linear-gradient(to right,
+                                          #ccc, 
+                                          #ccc 5%, 
+                                          #000 5%, 
+                                          #000 6%, 
+                                          #ccc 6%, 
+                                          #ccc 10%);
 }

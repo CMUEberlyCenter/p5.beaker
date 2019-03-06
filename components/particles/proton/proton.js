@@ -18,10 +18,15 @@ import ParticleImg from './proton.png';
  * @param {number} y=0 - Y position of particle
  */
 export default function Proton(sketch,x=0,y=0) {
+    this.execute_callback("Proton","pre",this);
+
     Particle.call(this,sketch);
     this.createSprite(x,y);
+
     this.base = {};
     this.base.particle = null;
+
+    this.execute_callback("Proton","post",this);
 }
 Proton.prototype = new Particle();
 

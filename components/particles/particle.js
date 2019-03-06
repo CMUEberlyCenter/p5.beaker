@@ -14,6 +14,8 @@
  * @param {number} y=0 - Y position of particle.
  */
 export default function Particle(sketch,x=0,y=0) {
+    this.execute_callback("Particle","pre",this);
+
     /**
      * The parent p5 sketch containing the particle.
      * @type {object}
@@ -55,6 +57,8 @@ export default function Particle(sketch,x=0,y=0) {
      * @default {}
      */
     this.cleanups = {};
+
+    this.execute_callback("Particle","post",this);
 }
 
 /**
