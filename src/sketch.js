@@ -6,12 +6,24 @@ import Beaker from '../components/beaker/beaker.js';
 import ConjugateBase from '../components/particles/conjugate_base/conjugate_base.js';
 import Proton from '../components/particles/proton/proton.js';
 
-
 var sketch = function(p) {
     var numConjugateBases = 10;
     var numProtons = 10;
     var numAcids = 0;
     var beaker = null;
+
+    var particleTableColumn = function(table,images,label,data) {
+        var image_div = p.createDiv().class("particle");
+        images.forEach((image) => {
+            image_div.child(image);
+        });
+        var column = p.createDiv();
+        column.
+            child(image_div).
+            child(p.createP(label).class("label")).
+            child(data);
+        table.child(column);
+    }
 
     var particleTableUpdate = function(pNumAcids,pNumConjugateBases) {
         pNumAcids.html(numAcids);
@@ -19,36 +31,29 @@ var sketch = function(p) {
     }
 
     var particleTableSetup = function() {
-        var base_img = p.createImg(ConjugateBase.prototype.image_path,
-                                   'Conjugate Base').class("base");
-        var proton_img = p.createImg(Proton.prototype.image_path,
-                                     'Proton').class("proton");
-        var acid_div = p.createDiv().child(base_img).
-child(proton_img);
+        var table = p.createDiv().id("particle-table")
+
+        // Acid column
         var pNumAcids = p.createP(numAcids).id("num-acids");
-        var acid = p.createDiv().
-            child(p.createDiv().class("particle").
-child(acid_div)).
-            child(p.createP('acid').class("label")).
-            child(pNumAcids);
-        var comparison = p.createDiv().
-            child(p.createDiv().class("particle")).
-            child(p.createP('<=>').class("label"));
-        base_img = p.createImg(ConjugateBase.prototype.image_path,
-                               'Conjugate Base');
+        particleTableColumn(table,[
+            p.createImg(ConjugateBase.prototype.
+                        image_path,'Conjugate Base').class("base"),
+            p.createImg(Proton.prototype.
+                        image_path,'Proton').class("proton")
+        ],"acid",pNumAcids);
+
+        // Comparison column
+        particleTableColumn(table,[],"&lt;=&gt;");
+
+        // Conjugate base column
         var pNumConjugateBases = p.createP(numConjugateBases).
             id("num-conjugate-bases");
-        var bases = p.createDiv().
-            child(p.createDiv().class("particle").
-child(base_img)).
-            child(p.createP('conjugate base').class("label")).
-            child(pNumConjugateBases);
+        particleTableColumn(table,[
+            p.createImg(ConjugateBase.
+                        prototype.image_path,'Conjugate Base')
+        ],"conjugate base",pNumConjugateBases);
 
-        p.createDiv().id("particle-table").
-            child(acid).
-            child(comparison).
-            child(bases);
-
+        // Register callbacks to update particle table
         ConjugateBase.prototype.
             register_callback("release_proton","post",
                               () => {
@@ -73,7 +78,7 @@ child(base_img)).
         var inputNumProtonsEvent = function() {
 
             var newNumProtons = parseInt(this.value(),10);
-            if (newNumProtons===newNumProtons) { // only if not NaN
+            if (newNumProtons===newNumProtons) { // Only if not NaN
                 var deltaProtons = newNumProtons - numProtons;
                 if (deltaProtons > 0) {
                     beaker.addParticles(Proton,deltaProtons);
@@ -84,17 +89,12 @@ child(base_img)).
                 numProtons = newNumProtons;
             }
         };
-
         inputNumProtons.input(inputNumProtonsEvent);
-
     }
 
     var UISetup = function() {
         particleTableSetup();
         inputNumProtonsSetup();
-        var sliderNumProtons = p.createSlider(0,64,numProtons);
-        //sliderNumProtons.changed(updateNumProtons);
-        sliderNumProtons.position(230,195);
     }
 
     p.preload = function() {
@@ -107,22 +107,18 @@ child(base_img)).
         p.createCanvas(500,500);
         p.background(255,255,255);
 
-        beaker = new Beaker(p,
-                            286,278,
-                            0,40,
-                            38,75);
+        beaker = new Beaker(p,286,278,0,40,38,75);
+
         UISetup();
 
         beaker.addParticles(ConjugateBase,numConjugateBases);
         beaker.addParticles(Proton,numProtons);
-
     };
 
     p.draw = function() {
         beaker.step();
         beaker.draw();
     };
-
 }
 
 var p5_sketch = new p5(sketch,'beaker');

@@ -112,7 +112,7 @@ Beaker.prototype.fg_image_path = ForegroundImg;
  * ...
  * var proton_sprite_group = beaker.particles["Proton"].sprites;
  */
-Beaker.prototype.particles = {}; // initialized indirectly via addParticles()
+Beaker.prototype.particles = {}; // Initialized indirectly via addParticles()
 
 /**
  * Perform any actions required before the beaker can be used.
@@ -274,7 +274,7 @@ Beaker.prototype.sprite_boundary_update = function(sprite,
 Beaker.prototype.sprite_resolve_collisions = function(sprite,reacts_with) {
     var beaker_particles = this.particles;
     for (var i in Object.keys(reacts_with)) {
-        var target_key = Object.keys(reacts_with)[i]; // e.g.: "Proton"
+        var target_key = Object.keys(reacts_with)[i]; // E.g.: "Proton"
         var target_group = beaker_particles[target_key].sprites;
         sprite.overlap(target_group,reacts_with[target_key]);
     }
