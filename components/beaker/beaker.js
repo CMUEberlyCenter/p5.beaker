@@ -275,7 +275,9 @@ Beaker.prototype.sprite_resolve_collisions = function(sprite,reacts_with) {
     var beaker_particles = this.particles;
     for (var i in Object.keys(reacts_with)) {
         var target_key = Object.keys(reacts_with)[i]; // E.g.: "Proton"
-        var target_group = beaker_particles[target_key].sprites;
-        sprite.overlap(target_group,reacts_with[target_key]);
+        var target_group = beaker_particles[target_key];
+        if (target_group) {
+            sprite.overlap(target_group.sprites,reacts_with[target_key]);
+        }
     }
 };
