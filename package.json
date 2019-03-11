@@ -1,24 +1,43 @@
 {
+    "name": "@cmu-eberly-center/p5.beaker",
+    "version": "1.0.0",
+    "description": "p5.beaker is a client-side p5.js library for creating biochem simulations.",
+    "main": "dist/p5.beaker.js",
     "scripts": {
         "doc": "jsdoc --configure .jsdoc.json",
-        "build": "webpack --verbose --production",
-        "start": "echo 'Starting Webpack dev server! \n' && webpack-dev-server",
-        "watch": "webpack --watch"
+        "build": "webpack --verbose --config webpack.prod.js",
+        "start": "echo 'Starting Webpack dev server! \n' && webpack-dev-server --watch --config webpack.dev.js",
+        "watch": "webpack --watch --config webpack.dev.js"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CMUEberlyCenter/p5.beaker.git"
+    },
+    "author": "Meg Richards <mouse@cmu.edu>",
+    "license": "LGPL-2.1",
+    "bugs": {
+        "url": "https://github.com/CMUEberlyCenter/p5.beaker/issues"
+    },
+    "homepage": "https://github.com/CMUEberlyCenter/p5.beaker#readme",
     "devDependencies": {
-        "css-loader": "^2.1.0",
+        "@cmu-eberly-center/p5": "^0.8.0",
+        "@cmu-eberly-center/p5.play": "^1.2.0",
+        "css-loader": "^2.1.1",
         "eslint": "^5.15.1",
         "eslint-loader": "^2.1.2",
         "file-loader": "^3.0.1",
+        "html-webpack-plugin": "^3.2.0",
         "jsdoc": "^3.5.5",
         "style-loader": "^0.23.1",
-        "webpack": "^4.29.5",
+        "url-loader": "^1.1.2",
+        "webpack": "^4.29.6",
         "webpack-cli": "^3.2.3",
-        "webpack-dev-server": "^3.2.1"
+        "webpack-dev-server": "^3.2.1",
+        "webpack-merge": "^4.2.1",
+        "webpack-node-externals": "^1.7.2"
     },
-    "dependencies": {
+    "peerDependencies": {
         "@cmu-eberly-center/p5": "^0.8.0",
-        "@cmu-eberly-center/p5.play": "^1.2.0",
-        "npm": "^6.5.0"
+        "@cmu-eberly-center/p5.play": "^1.2.0"
     }
 }
