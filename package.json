@@ -1,6 +1,6 @@
 {
     "name": "@cmu-eberly-center/p5.beaker",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "p5.beaker is a client-side p5.js library for creating biochem simulations.",
     "main": "dist/p5.beaker.js",
     "scripts": {
