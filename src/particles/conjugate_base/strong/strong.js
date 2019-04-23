@@ -12,6 +12,7 @@ import ParticleImg from './strong.png';
 
 /**
  * A strong conjugate base particle.
+ * NOTE: Strong conjugate bases go with weak acids
  * @class StrongConjugateBase
  * @augments module:particles/conjugate_base~ConjugateBase
  * @param {!object} sketch - Parent p5 sketch.
