@@ -1,4 +1,4 @@
-/*global document */
+/* global document */
 (function() {
     var source = document.getElementsByClassName('prettyprint source linenums');
     var i = 0;
@@ -15,11 +15,11 @@
 
         for (; i < totalLines; i++) {
             lineNumber++;
-            lineId = 'line' + lineNumber;
+            lineId = `line${lineNumber}`;
             lines[i].id = lineId;
             if (lineId === anchorHash) {
                 lines[i].className += ' selected';
             }
         }
     }
-})();
+}());
