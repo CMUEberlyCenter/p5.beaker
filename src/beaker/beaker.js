@@ -210,7 +210,7 @@ Beaker.prototype.addParticle = function(particle_key,particle) {
  * @param {number} quantity - Number of particles to remove.
  */
 Beaker.prototype.removeParticles = function(particle_class,quantity) {
-    var particle_name = particle_class.name;
+    var particle_name = particle_class.prototype.name;
     var num_particles = this.particles[particle_name].sprites.size();
     if (num_particles < quantity) {
         quantity = num_particles;
