@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3>@cmu-eberly-center/p5.beaker 1.2.0</h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Biolab Activity Template</h1><p>This project is a template for activities in the Biolab suite.</p>
+<p><img src="https://img.shields.io/travis/CMUEberlyCenter/biolab-activity-template.svg" alt="Travis (.org)">
+<img src="https://img.shields.io/coveralls/github/CMUEberlyCenter/biolab-activity-template.svg" alt="Coveralls github">
+<img src="https://img.shields.io/codeclimate/maintainability/CMUEberlyCenter/biolab-activity-template.svg" alt="Code Climate maintainability"></p>
+<h2>Getting Started</h2><p>As this project is designed to be a template for a Biolab activity, these instructions will have you create a new activity repo, then get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.</p>
+<h3>Prerequisites</h3><p>git and <a href="https://www.npmjs.com/">npm</a> must be installed and are assumed to be in your path.</p>
+<h3>Installing</h3><p>On your local machine, create a new activity directory (e.g.: biolab-activity-strong-vs-weak-acid-dissociation) and initialize it as a git repo:</p>
+<pre class="prettyprint source"><code>mkdir new-activity-name
+cd new-activity-name
+git init</code></pre><p>Pull the source from project and then initialize and fetch the configuration submodule:</p>
+<pre class="prettyprint source"><code>git pull https://github.com/CMUEberlyCenter/biolab-activity-template
+git submodule update --init conf/</code></pre><p>Open a browser, go to GitHub, and create a new repository for the activity (naming convention is biolab-activity-something).</p>
+<p>Add your new repo as the origin of your local repo and push everything there:</p>
+<pre class="prettyprint source"><code>git remote add origin git-url-of-new-activity-repo
+git push -u origin master</code></pre><p>Install dependencies from npm:</p>
+<pre class="prettyprint source"><code>npm i</code></pre><p>Now that the config update dependencies are installed, do a config update and another install in case anything new came from upstream:</p>
+<pre class="prettyprint source"><code>npm run conf
+npm i</code></pre><p>To start the dev server and see a skeleton program run:</p>
+<pre class="prettyprint source"><code>npm run start</code></pre><p>and point your browser at the URL it tells you (probably <a href="http://localhost:8080">localhost:8080</a>)</p>
+<h3>Configuring hosted CI services</h3><p>Biolab activities should follow the model of this template by having tested, maintainable code. Login to the following services with your GitHub credentials and enable the new activity's repository in each. The links below will take you directly to the respective add repo pages. No additional configuration is required.</p>
+<p><a href="https://travis-ci.org/account/repositories">Travis CI</a> - Continuous integration build and testing</p>
+<p><a href="https://coveralls.io/repos/new">Coveralls</a> - Code coverage tracking</p>
+<p><a href="https://codeclimate.com/github/repos/new">Code Climate</a> - Code maintainability</p>
+<p>Update the shield links in the new activity's <code>README.md</code>. The links should change from the template's project to that of the new activity's project. Finally, commit those changes and push them to GitHub.</p>
+<h2>Developing and Building the Activity</h2><p>Assuming the steps in Getting Started completed successfully, work on the activity code can begin in earnest. Most development work will be in <code>src/sketch.js</code> and will vary based on the requirements of the activity.</p>
+<h3>Building the Activity</h3><p>Build scripts within <code>package.json</code> manage the development lifecycle.</p>
+<p>As seen above in Getting Started, <code>npm run start</code> spools up a dev server. Changes made to source files will be automatically reflected once saved. </p>
+<p>If it's desirable to just open an html file locally on the dev machine, you can perform a dev build:</p>
+<pre class="prettyprint source"><code>npm run build:dev</code></pre><p>That will build the project using the dev webpack configuration and export it to <code>dist/</code>. The exported file <code>dist/index.html</code> can be opened with a browser by doing <code>File &gt; Open File...</code> (or equivalent.</p>
+<p>You can automatically perform a rebuild whenever a change is made to a source file:</p>
+<pre class="prettyprint source"><code>npm run build:watch</code></pre><p>Just reload the <code>dist/index.html</code> file already open in your browser.</p>
+<p>Finally, remove all files in <code>dist/</code> with:</p>
+<pre class="prettyprint source"><code>npm run build:clean</code></pre><p>As is typically done before a clean build.</p>
+<p>Regenerate a production bundle before commiting changes to master:</p>
+<pre class="prettyprint source"><code>npm run build:clean
+npm run build # an alias for build:prod</code></pre><p>In a production build, ESLint must succeed or the build will fail and no files will be in <code>dist/</code>.</p>
+<h3>Generating documentation</h3><p>Documentation uses JSDoc, and can be generated with:</p>
+<pre class="prettyprint source"><code>npm run doc</code></pre><p>Examples of properly documented code can be found in the template. You should regenerate documentation before commiting changes to master if any of those changes would affect the documentation.</p>
+<h3>Deploying the demo to GitHub Pages</h3><p>A publicly accessible demo of the activity can be created by the following:</p>
+<pre class="prettyprint source"><code>npm run deploy</code></pre><p>The demo will be located at <a href="https://cmueberlycenter.github.io/biolab-activity-name">https://cmueberlycenter.github.io/biolab-activity-name</a>. If it's not found, check the GitHub Pages settings for the repository. Ensure it is turned on and set to use the <code>gh-pages</code> branch.</p>
+<h3>Receiving upstream configuration changes</h3><p>The <a href="https://github.com/CMUEberlyCenter/biolab-config">biolab-config</a> project governs how activities should generally be configured and it's a good idea to regularly pull those updates. The one-stop shop to fetch updates and incorporate those changes is:</p>
+<pre class="prettyprint source"><code>npm run conf</code></pre><p>Upstream configuration is included as a submodule and placed in <code>conf/</code>. All activity-specific configuration overrides should be done by editing the appropriate file(s) in the project root, and NOT by editing files within <code>conf/</code>. Configuration overrides in files at the project root take precedence and will not be overwritten. This includes edits to the <code>package.json</code> file: It is carefully merged with the upstream <code>package-base.json</code> and additional, activity-specific packages can be installed using <code>npm i &lt;package-name&gt; --save-dev</code> or <code>npm i &lt;package-name&gt; --save</code> as normal.</p>
+<h2>Running Tests</h2><p>Test scripts are included in the <code>package.json</code> file. Tests discussed below should all pass before getting committed. When a commit is pushed to master on GitHub, Code Climate and Travis CI are automatically triggered. Code Climate performs a maintainability analysis and Travis does a build and sends the coverage report to Coveralls. Updates will be seen in the shields in the <code>README.md</code> and details can be found on the reports at each service's site.</p>
+<h3>Code coverage and unit testing</h3><p>Testing is primarily done through Jest. Some example tests are included for <code>src/sketch.js</code> in <code>src/sketch.test.js</code>. Tests should be added throughout activity development. Tests can be run by:</p>
+<pre class="prettyprint source"><code>npm run test</code></pre><h3>Linting</h3><p>ESLint is used for linting, which does code style checks and looks for potential errors. The linting process is integrated with webpack, which handles the asset bundling and build process. That process is discussed above, but the result is that linting does not need to be done explicitly. However, if that is necessary or even desirable, you can use the following to lint files within the <code>src</code> directory:</p>
+<pre class="prettyprint source"><code>npx eslint src/</code></pre><h2>Deployment</h2><p>To prepare for activity deployment, the <code>index.html</code> and <code>bundle.js</code> in <code>./dist</code> should be placed in the
+same directory. They can be served by any standard webserver or
+<code>index.html</code> can be opened by a browser using <code>File &gt; Open File...</code>.</p>
+<h2>Versioning</h2><p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/CMUEberlyCenter/p5.beaker/tags">tags on this repository</a>.</p>
+<h2>Built With</h2><ul>
+<li><a href="https://p5js.org/">p5.js</a> - The drawing library</li>
+<li><a href="http://molleindustria.github.io/p5.play/">p5.play</a> - Sprite library for p5.js</li>
+<li><a href="http://cmueberlycenter.github.io/p5.beaker/">p5.beaker</a> - Beaker and particle library for p5.js</li>
+</ul>
+<h2>Authors</h2><ul>
+<li><strong>Meg Richards</strong> - <em>Initial work</em> - <a href="https://github.com/merichar">merichar</a></li>
+</ul>
+<p>See also the list of <a href="https://github.com/CMUEberlyCenter/biolab-activity-template/contributors">contributors</a> who participated in this project.</p></article>
+    </section>
+
+
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>beaker/beaker.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Beaker class for use with the acid equilibrium simulation.
+  Acts as a particle container and manages particle groups.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>mouse@cmu.edu (Meg Richards)</li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li>Carnegie Mellon University 2018</li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="beaker_beaker.js.html">beaker/beaker.js</a>, <a href="beaker_beaker.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>particles/conjugate_base/conjugate_base.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Conjugate Base class for use with the acid equilibrium
+              simulation.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Meg Richards (mouse@cmu.edu)</li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li>Carnegie Mellon University 2018</li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="particles_conjugate_base_conjugate_base.js.html">particles/conjugate_base/conjugate_base.js</a>, <a href="particles_conjugate_base_conjugate_base.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>particles/conjugate_base/strong/strong.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Strong Conjugate Base class for use with the acid
+              equilibrium simulation.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Zach Mineroff (zmineroff@cmu.edu)</li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li>Carnegie Mellon University 2019</li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="particles_conjugate_base_strong_strong.js.html">particles/conjugate_base/strong/strong.js</a>, <a href="particles_conjugate_base_strong_strong.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>particles/conjugate_base/weak/weak.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Weak Conjugate Base class for use with the acid equilibrium
+              simulation.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Meg Richards (mouse@cmu.edu)</li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li>Carnegie Mellon University 2019</li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="particles_conjugate_base_weak_weak.js.html">particles/conjugate_base/weak/weak.js</a>, <a href="particles_conjugate_base_weak_weak.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>particles/particle.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Particle class for use with the acid equilibrium simulation.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Meg Richards (mouse@cmu.edu)</li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li>Carnegie Mellon University 2018</li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="particles_particle.js.html">particles/particle.js</a>, <a href="particles_particle.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>particles/proton/proton.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Proton class for use with the acid equilibrium simulation.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Meg Richards (mouse@cmu.edu)</li>
+        </ul>
+    </dd>
+    
+
+    
+    <dt class="tag-copyright">Copyright:</dt>
+    <dd class="tag-copyright"><ul class="dummy"><li>Carnegie Mellon University 2018</li></ul></dd>
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="particles_proton_proton.js.html">particles/proton/proton.js</a>, <a href="particles_proton_proton.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-beaker.html">beaker</a></li><li><a href="module-particles.html">particles</a></li><li><a href="module-particles_conjugate_base.html">particles/conjugate_base</a></li><li><a href="module-particles_conjugate_base_strong.html">particles/conjugate_base/strong</a></li><li><a href="module-particles_conjugate_base_weak.html">particles/conjugate_base/weak</a></li><li><a href="module-particles_proton.html">particles/proton</a></li></ul><h3>Classes</h3><ul><li><a href="module-beaker-Beaker.html">Beaker</a></li><li><a href="module-particles_conjugate_base_strong-StrongConjugateBase.html">StrongConjugateBase</a></li><li><a href="module-particles_conjugate_base_weak-WeakConjugateBase.html">WeakConjugateBase</a></li><li><a href="module-particles_conjugate_base-ConjugateBase.html">ConjugateBase</a></li><li><a href="module-particles_proton-Proton.html">Proton</a></li><li><a href="module-particles-Particle.html">Particle</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-beaker-tutorial.html">beaker-tutorial</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jun 26 2019 01:55:10 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
